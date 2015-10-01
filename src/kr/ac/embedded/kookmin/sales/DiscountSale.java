@@ -1,16 +1,11 @@
 package kr.ac.embedded.kookmin.sales;
 
-/**
- * Class for a sale of one item with discount expressed as a percent of the
- * price, but no other adjustments. Class invariant: The price is always
- * nonnegative; the name is a nonempty string; the discount is always
- * nonnegative.
- */
-
 public class DiscountSale extends Sale {
 	private double	discount;	// A percent of the price. Cannot be negative.
 								
-	public DiscountSale() {	}
+	public DiscountSale() {
+		super() ;
+	}
 	
 	/**
 	 * Precondition: theName is a nonempty string; thePrice is nonnegative;
