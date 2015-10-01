@@ -10,20 +10,20 @@ package kr.ac.embedded.kookmin.sales;
 public class DiscountSale extends Sale {
 	private double	discount;	// A percent of the price. Cannot be negative.
 								
-	public DiscountSale() {
-		/** 구현 하시오 **/ 
-	}
+	public DiscountSale() {	}
 	
 	/**
 	 * Precondition: theName is a nonempty string; thePrice is nonnegative;
 	 * theDiscount is expressed as a percent of the price and is nonnegative.
 	 */
 	public DiscountSale(String theName, double thePrice, double theDiscount) {
-		/** 구현 하시오 **/ 
+		super(theName, thePrice) ;
+		this.discount = theDiscount ;
 	}
 	
 	public DiscountSale(DiscountSale originalObject) {
-		/** 구현 하시오 **/ 
+		super(originalObject.getName() , originalObject.getPrice()) ;
+		this.discount = originalObject.discount ;
 	}
 	
 	public static void announcement() {
@@ -31,18 +31,18 @@ public class DiscountSale extends Sale {
 	}
 	
 	public double bill() {
-		/** 구현 하시오 **/ 
+		return this.getPrice() *(1- discount/100) ;
 	}
 	
 	public double getDiscount() {
-		/** 구현 하시오 **/ 
+		return discount ; 
 	}
 	
 	/**
 	 * Precondition: Discount is nonnegative.
 	 */
 	public void setDiscount(double newDiscount) {
-		/** 구현 하시오 **/ 
+		this.discount = newDiscount ;
 	}
 	
 	public String toString() {
@@ -50,11 +50,20 @@ public class DiscountSale extends Sale {
 	}
 	
 	public boolean equals(Object otherObject) {
-		/** 구현 하시오 **/ 
+		if (otherObject == null)
+			return false;
+		else if(getClass() != otherObject.getClass())
+			return false;
+		else
+		{
+			DiscountSale otherdis = (DiscountSale) otherObject ;
+			return (this.getName().equals(otherdis.getName())) && this.bill() == otherdis.bill() && this.discount == otherdis.discount  ;
+		}
 	}
 	
 	
-	public DiscountSale clone() {
-		/** 구현 하시오....  임시생성자 사용 **/ 
+	public DiscountSale clone() 
+	{
+		return new DiscountSale(this);
 	}
 }
